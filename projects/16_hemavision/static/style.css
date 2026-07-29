@@ -1,0 +1,7 @@
+/* HemaVision AI - Blood Cell Classification - Project-Specific Styles */
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #d53f8c;
+    background: rgba(213, 63, 140, 0.05);
+}

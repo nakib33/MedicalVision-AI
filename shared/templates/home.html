@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}MedicalVision AI Suite — 12 Medical Imaging Projects{% endblock %}
+
+{% block content %}
+<!-- ═══ Hero ═══ -->
+<section style="text-align:center; padding:3rem 0 2rem;">
+    <h1 style="font-size:2.5rem; font-weight:800; margin-bottom:0.5rem;
+               background: linear-gradient(135deg, var(--accent), #805ad5);
+               -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        MedicalVision AI Suite
+    </h1>
+    <p style="font-size:1.1rem; color:var(--text-secondary); max-width:700px; margin:0 auto;">
+        12 CNN-based medical imaging projects powered by PyTorch &amp; Explainable AI.
+        Upload a scan, get instant predictions with Grad-CAM, Grad-CAM++, Saliency Maps &amp; more.
+    </p>
+</section>
+
+<!-- ═══ Project Grid ═══ -->
+<section>
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <div>
+            <h2 class="section-title">Explore Projects</h2>
+            <p class="section-subtitle">Click any project to start analysing medical images</p>
+        </div>
+        <input type="text" id="projectSearch" placeholder="🔍  Search projects..."
+               style="padding:0.6rem 1rem; border:1px solid var(--border); border-radius:var(--radius-sm);
+                      background:var(--bg-input); color:var(--text-primary); font-size:0.9rem;
+                      min-width:240px; font-family:var(--font-sans);">
+    </div>
+
+    <div class="project-grid" id="projectGrid">
+        {% for project in projects %}
+        <a href="/{{ project.id }}/" class="project-card" data-name="{{ project.name|lower }}">
+            <div class="project-number">{{ "%02d"|format(loop.index) }}</div>
+            <h3>{{ project.name }}</h3>
+            <p class="project-desc">{{ project.description }}</p>
+            <div class="project-meta">
+                <span class="tag">{{ project.classes|length }} classes</span>
+                <span class="tag">{{ project.model }}</span>
+                {% if project.is_xai %}
+                <span class="tag" style="background:#fefcbf; color:#975a16;">XAI</span>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('projectSearch');
+        const projectGrid = document.getElementById('projectGrid');
+        const cards = projectGrid.querySelectorAll('.project-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const name = card.dataset.name || '';
+                const match = !query || name.includes(query);
+                card.style.display = match ? '' : 'none';
+            });
+        });
+    });
+</script>
+{% endblock %}

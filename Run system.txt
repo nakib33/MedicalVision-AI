@@ -1,0 +1,161 @@
+MedicalVision AI Suite - Run System
+====================================
+
+
+HOW TO RUN THE APPLICATION
+--------------------------
+
+Step 1: Open Terminal
+    cd "d:\DP Project\Medical CNN"
+
+Step 2: Install Dependencies (ONE TIME ONLY)
+    pip install -r requirements.txt
+
+Step 3: Start the Server
+    python run.py
+
+Step 4: Open in Browser
+    http://localhost:8000
+
+
+WHAT YOU SEE
+------------
+
+Home Page (http://localhost:8000):
+  - 12 project cards in a grid
+  - Click any card to open that project
+  - Search bar to filter projects
+
+Project Page (http://localhost:8000/01_brain_tumor/):
+  - Left: Upload zone (drag & drop or click)
+  - Right: Results area (hidden until analysis)
+  - "Analyse Image" button
+  - XAI heatmap gallery
+  - "Download PDF Report" button
+
+About Page (http://localhost:8000/about):
+  - Project overview, architecture, usage guide
+  - List of all 12 projects
+
+API Docs (http://localhost:8000/docs):
+  - Swagger UI for all endpoints
+
+
+API ENDPOINTS
+-------------
+
+GET  /                               Home page
+GET  /about                          About page
+GET  /api/projects                   All projects as JSON
+GET  /health                         Server health check
+
+GET  /{project_id}/                  Project UI page
+POST /{project_id}/predict           Upload image -> prediction
+POST /{project_id}/explain           Upload image -> XAI heatmaps
+GET  /{project_id}/report            Download PDF report
+
+Example:
+    GET  /01_brain_tumor/            Brain Tumor project
+    POST /01_brain_tumor/predict     Upload brain MRI scan
+
+
+ALL 12 PROJECT URLS
+-------------------
+
+Project 1:    http://localhost:8000/01_brain_tumor/
+Project 2:    http://localhost:8000/02_pneumonia/
+Project 3:    http://localhost:8000/03_covid19/
+Project 4:    http://localhost:8000/04_tuberculosis/
+Project 5:    http://localhost:8000/05_alzheimers/
+Project 6:    http://localhost:8000/06_skin_cancer/
+Project 7:    http://localhost:8000/07_diabetic_retinopathy/
+Project 8:    http://localhost:8000/08_malaria/
+Project 9:    http://localhost:8000/09_breast_cancer/
+Project 10:   http://localhost:8000/10_bone_fracture/
+Project 11:   http://localhost:8000/11_lung_cancer/
+Project 12:   http://localhost:8000/12_medscan_ai/
+
+
+DOWNLOAD DATASETS
+-----------------
+
+Run any of these commands from the project root:
+
+    python projects/01_brain_tumor/download_data.py
+    python projects/02_pneumonia/download_data.py
+    python projects/03_covid19/download_data.py
+    python projects/04_tuberculosis/download_data.py
+    python projects/05_alzheimers/download_data.py
+    python projects/06_skin_cancer/download_data.py
+    python projects/07_diabetic_retinopathy/download_data.py
+    python projects/08_malaria/download_data.py
+    python projects/09_breast_cancer/download_data.py
+    python projects/10_bone_fracture/download_data.py
+    python projects/11_lung_cancer/download_data.py
+    python projects/12_medscan_ai/download_data.py
+
+Run all at once (Windows CMD):
+    for %p in (01_brain_tumor 02_pneumonia 03_covid19 04_tuberculosis 05_alzheimers 06_skin_cancer 07_diabetic_retinopathy 08_malaria 09_breast_cancer 10_bone_fracture 11_lung_cancer 12_medscan_ai) do python projects/%p/download_data.py
+
+Run all at once (Git Bash):
+    for p in 01_brain_tumor 02_pneumonia 03_covid19 04_tuberculosis 05_alzheimers 06_skin_cancer 07_diabetic_retinopathy 08_malaria 09_breast_cancer 10_bone_fracture 11_lung_cancer 12_medscan_ai; do python projects/$p/download_data.py; done
+
+
+HOW TO TRAIN MODELS (for real predictions)
+------------------------------------------
+
+Without training, models return random predictions.
+Train each model to get accurate results:
+
+    cd projects/01_brain_tumor
+    python download_data.py
+    jupyter notebook model.ipynb
+
+The notebook has 8 cells to run in order.
+Trained weights save to: trained_models/{project_id}_best.pth
+
+Repeat for each project you want to use.
+
+
+CUSTOM PORT
+-----------
+
+python run.py --port 8080 --host 127.0.0.1
+
+
+TROUBLESHOOTING
+---------------
+
+Port already in use:
+    python run.py --port 8080
+
+Module not found:
+    pip install -r requirements.txt
+
+No trained model warning:
+    This is normal. Train the model first (see above).
+
+Encoding errors on Windows:
+    Make sure terminal is using UTF-8:
+    chcp 65001
+
+
+PROJECT STRUCTURE
+-----------------
+
+Medical CNN/
+  run.py                  Server launcher
+  main.py                 FastAPI app (all routes)
+  requirements.txt        Dependencies
+  shared/                 Reusable code (models, XAI, tools)
+  projects/               12 project folders
+    01_brain_tumor/       Each has:
+      config.py             - Settings
+      download_data.py      - Dataset downloader
+      model.ipynb           - Training notebook
+      model_loader.py       - Model loader
+      static/               - UI files
+  02_pneumonia/
+  ... (through 12_medscan_ai)
+  trained_models/         Saved model weights
+  scripts/                Helper scripts

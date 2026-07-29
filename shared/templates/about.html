@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}About - MedicalVision AI Suite{% endblock %}
+
+{% block content %}
+<section style="max-width:900px; margin:0 auto;">
+    <h1 style="font-size:2rem; font-weight:700; margin-bottom:1rem;">About MedicalVision AI Suite</h1>
+
+    <div class="card" style="margin-bottom:2rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">🎯 Overview</h2>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+            <strong>MedicalVision AI Suite</strong> is a comprehensive portfolio of 12 deep learning projects
+            focused on medical image analysis. Built with <strong>PyTorch</strong> and served through a unified
+            <strong>FastAPI</strong> web interface, each project demonstrates the application of convolutional
+            neural networks (CNNs) to a different medical imaging modality and disease classification task.
+        </p>
+    </div>
+
+    <div class="card" style="margin-bottom:2rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">🧠 Explainable AI (XAI)</h2>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+            Every project includes 7 state-of-the-art explainability methods that visualise
+            <em>how</em> the model reaches its prediction:
+        </p>
+        <ul style="margin:1rem 0; padding-left:1.5rem; color:var(--text-secondary); line-height:2;">
+            <li><strong>Grad-CAM</strong> - Gradient-weighted Class Activation Mapping (Selvaraju et al., ICCV 2017)</li>
+            <li><strong>Grad-CAM++</strong> - Improved localisation for multiple instances (Chattopadhay et al., WACV 2018)</li>
+            <li><strong>Score-CAM</strong> - Channel activation weighting without gradients (Wang et al., CVPRW 2020)</li>
+            <li><strong>Vanilla Saliency</strong> - Input gradient visualisation (Simonyan et al., ICLR 2014)</li>
+            <li><strong>Guided Backpropagation</strong> - Modified backprop for sharper features (Springenberg et al., ICLRW 2015)</li>
+            <li><strong>Integrated Gradients</strong> - Path-integral attribution (Sundararajan et al., ICML 2017)</li>
+            <li><strong>Occlusion Sensitivity</strong> - Sliding-window occlusion map (Zeiler &amp; Fergus, ECCV 2014)</li>
+        </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:2rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">🏗️ Architecture</h2>
+        <table style="width:100%; border-collapse:collapse; color:var(--text-secondary);">
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem; font-weight:600;">Backend</td>
+                <td style="padding:0.5rem;">Python 3.14+, FastAPI, Uvicorn</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem; font-weight:600;">Deep Learning</td>
+                <td style="padding:0.5rem;">PyTorch 2.13, TorchVision, CUDA 12.6</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem; font-weight:600;">Models</td>
+                <td style="padding:0.5rem;">EfficientNet-B0/7, ResNet18/50, DenseNet121, Custom CNN</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem; font-weight:600;">Frontend</td>
+                <td style="padding:0.5rem;">HTML5, CSS3, JavaScript (Vanilla)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem; font-weight:600;">Image Processing</td>
+                <td style="padding:0.5rem;">Pillow, OpenCV</td>
+            </tr>
+            <tr>
+                <td style="padding:0.5rem; font-weight:600;">Visualisation</td>
+                <td style="padding:0.5rem;">Matplotlib, PDF Report Generation</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card" style="margin-bottom:2rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">📋 Projects</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:0.75rem;">
+            {% for p in projects %}
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem;
+                        background:var(--bg-input); border-radius:var(--radius-sm);">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">
+                    {{ "%02d"|format(loop.index) }}
+                </span>
+                <div>
+                    <strong style="font-size:0.85rem;">{{ p.name }}</strong>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">
+                        {{ p.model }} · {{ p.classes|length }} classes
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom:2rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">📄 How to Use</h2>
+        <ol style="color:var(--text-secondary); line-height:2; padding-left:1.5rem;">
+            <li>Select a project from the <a href="/">home page</a></li>
+            <li>Upload a medical image (drag &amp; drop or click to browse)</li>
+            <li>Click <strong>"Analyse Image"</strong> to get a prediction</li>
+            <li>View class probabilities and confidence score</li>
+            <li>Browse through all 7 XAI heatmaps in the gallery</li>
+            <li>Click 🔄 to toggle between heatmap and overlay view</li>
+            <li>Click on any heatmap to expand it</li>
+            <li>Download a comprehensive <strong>PDF report</strong></li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;">⚠️ Disclaimer</h2>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+            This suite is built for <strong>research, educational, and portfolio demonstration purposes only</strong>.
+            It does NOT constitute a medical device, clinical decision support system, or professional medical advice.
+            All predictions should be verified by qualified healthcare professionals.
+            The developers assume no liability for clinical use of these models.
+        </p>
+    </div>
+</section>
+{% endblock %}

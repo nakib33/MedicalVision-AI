@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MedicalVision AI Suite{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body data-project-id="{% block project_id %}{% endblock %}">
+
+    <!-- ═══ Loading Overlay ═══ -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-box">
+            <div class="spinner"></div>
+            <p>Processing your scan...</p>
+        </div>
+    </div>
+
+    <!-- ═══ Header ═══ -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="header-brand">
+                <span class="logo-icon">🏥</span>
+                MedicalVision AI
+            </a>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/docs">API</a>
+                {% block extra_nav %}{% endblock %}
+                <button id="themeToggle" class="theme-toggle" title="Toggle theme">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══ Main Content ═══ -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <p>MedicalVision AI Suite &copy; 2026 — AI-Powered Medical Imaging Analysis Portfolio</p>
+    </footer>
+
+    <!-- ═══ Scripts ═══ -->
+    <script src="/static/js/main.js"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

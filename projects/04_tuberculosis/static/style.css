@@ -1,0 +1,7 @@
+/* Tuberculosis Detection - Project-Specific Styles */
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #dd6b20;
+    background: rgba(221, 107, 32, 0.05);
+}

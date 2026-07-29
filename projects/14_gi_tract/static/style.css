@@ -1,0 +1,7 @@
+/* GastroVision AI - GI Tract Disease Classification - Project-Specific Styles */
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #38a169;
+    background: rgba(56, 161, 105, 0.05);
+}

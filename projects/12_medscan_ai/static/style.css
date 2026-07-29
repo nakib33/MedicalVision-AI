@@ -1,0 +1,95 @@
+/* MedScan-AI — Flagship Project Styles */
+
+:root {
+    --medscan-primary: #6b46c1;
+    --medscan-secondary: #3182ce;
+    --medscan-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: var(--medscan-primary);
+    background: rgba(107, 70, 193, 0.05);
+}
+
+.medscan-hero {
+    text-align: center;
+    padding: 2rem;
+    background: var(--medscan-accent);
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.medscan-hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.medscan-hero p {
+    opacity: 0.9;
+    margin-top: 0.5rem;
+}
+
+/* Modality selector */
+.modality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.modality-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: var(--text-primary);
+}
+
+.modality-chip:hover {
+    border-color: var(--medscan-primary);
+    background: rgba(107, 70, 193, 0.08);
+}
+
+.modality-chip.active {
+    border-color: var(--medscan-primary);
+    background: var(--medscan-primary);
+    color: white;
+}
+
+/* XAI feature badges */
+.xai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.6rem;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border: 1px solid #667eea30;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--medscan-primary);
+    font-weight: 600;
+}
+
+/* Model comparison card */
+.compare-card {
+    background: var(--bg-card);
+    border: 2px solid var(--medscan-primary);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.compare-card h3 {
+    color: var(--medscan-primary);
+    margin-bottom: 0.5rem;
+}

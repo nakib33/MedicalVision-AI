@@ -1,0 +1,24 @@
+/* Brain Tumor MRI — Project-Specific Styles */
+
+.project-header-icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+/* Class-specific colors for probability bars */
+.prob-bar[data-class="Glioma"] .fill { background: #e53e3e; }
+.prob-bar[data-class="Meningioma"] .fill { background: #dd6b20; }
+.prob-bar[data-class="Pituitary"] .fill { background: #3182ce; }
+.prob-bar[data-class="Normal"] .fill { background: #38a169; }
+
+/* Upload zone accent for this project */
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #805ad5;
+    background: rgba(128, 90, 213, 0.05);
+}
+
+/* Gradient accent for project-specific elements */
+.accent-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}

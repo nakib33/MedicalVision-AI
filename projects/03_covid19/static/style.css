@@ -1,0 +1,7 @@
+/* COVID-19 Chest X-ray Classification - Project-Specific Styles */
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #3182ce;
+    background: rgba(49, 130, 206, 0.05);
+}

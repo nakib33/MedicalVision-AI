@@ -1,0 +1,99 @@
+/* Lung Cancer CT Scan Classification - Project-Specific Styles
+   Thematic colours: purple (#6b46c1), teal (#319795), coral accent
+*/
+
+/* ── Upload Zone ───────────────────────────────────────────── */
+.upload-zone {
+    border: 2px dashed #6b46c1;
+    transition: all 0.3s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #319795 !important;
+    background: rgba(49, 151, 149, 0.08) !important;
+}
+
+/* ── Prediction Card ───────────────────────────────────────── */
+.prediction-card .disease-name {
+    color: #6b46c1;
+    font-weight: 700;
+}
+
+/* ── Confidence Gauge ──────────────────────────────────────── */
+.confidence-gauge circle:last-child {
+    stroke: #6b46c1;
+}
+
+/* ── Probability Bars ──────────────────────────────────────── */
+.prob-bar-fill {
+    background: linear-gradient(90deg, #6b46c1, #319795);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+/* ── Explainer Grid Cards ──────────────────────────────────── */
+.explainer-card {
+    border: 1px solid #e2e8f0;
+    border-top: 3px solid #6b46c1;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.explainer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.15);
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, #6b46c1, #553c9a);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #553c9a, #44337a);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #319795, #2c7a7b);
+    color: white;
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #2c7a7b, #285e61);
+}
+
+/* ── Tags ──────────────────────────────────────────────────── */
+.tag {
+    background: rgba(107, 70, 193, 0.1);
+    color: #553c9a;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.tag.highlight {
+    background: rgba(49, 151, 149, 0.1);
+    color: #2c7a7b;
+}
+
+/* ── Error Message ─────────────────────────────────────────── */
+.alert-error {
+    background: #fff5f5;
+    border: 1px solid #fc8181;
+    color: #c53030;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}

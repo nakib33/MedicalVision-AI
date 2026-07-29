@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} — MedicalVision AI Suite{% endblock %}
+{% block project_id %}{{ project.id }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/{{ project.id }}/static/style.css">
+{% endblock %}
+
+{% block extra_nav %}
+<a href="/{{ project.id }}/" class="active">{{ project.short_name }}</a>
+{% endblock %}
+
+{% block content %}
+<!-- ═══ Back Link ═══ -->
+<a href="/" class="back-link">← Back to all projects</a>
+
+<!-- ═══ Project Header ═══ -->
+<section style="margin-bottom:2rem;">
+    <h1 style="font-size:1.8rem; font-weight:700;">{{ project.name }}</h1>
+    <p style="color:var(--text-secondary); margin-top:0.25rem;">
+        {{ project.description }} &mdash; {{ project.classes|length }} classes:
+        <strong>{{ project.classes|join(", ") }}</strong>
+    </p>
+    <div style="display:flex; gap:0.5rem; margin-top:0.75rem;">
+        <span class="tag">Model: {{ project.model }}</span>
+        <span class="tag">Input: {{ project.img_size }}×{{ project.img_size }}</span>
+    </div>
+</section>
+
+<!-- ═══ Two-Column Layout ═══ -->
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:start;">
+    <!-- ── Left: Upload ──────────────────────────────── -->
+    <div>
+        <div id="uploadZone" class="upload-zone">
+            <div class="upload-icon">📤</div>
+            <h3>Upload Medical Image</h3>
+            <p>Drag &amp; drop a scan here, or click to browse</p>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">
+                Supports: JPEG, PNG, BMP, TIFF
+            </p>
+            <input type="file" id="fileInput" accept="image/jpeg,image/png,image/bmp,image/tiff,image/webp">
+        </div>
+
+        <div id="previewContainer" class="preview-container"></div>
+
+        <div class="btn-group" style="justify-content:center;">
+            <button id="predictBtn" class="btn btn-primary" disabled>
+                🔬 Analyse Image
+            </button>
+        </div>
+
+        <div id="errorMessage" class="alert alert-error hidden"></div>
+    </div>
+
+    <!-- ── Right: Results ────────────────────────────── -->
+    <div id="resultsSection" class="hidden">
+        <div class="prediction-card">
+            <div class="prediction-header">
+                <div>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Prediction</p>
+                    <h2 id="predictedDisease" class="disease-name">—</h2>
+                </div>
+                <div id="confidenceGauge" class="confidence-gauge">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="var(--bg-input)"
+                                stroke-width="10"/>
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)"
+                                stroke-width="10" stroke-dasharray="314.159"
+                                stroke-dashoffset="314.159" stroke-linecap="round"/>
+                    </svg>
+                    <div class="percentage">0%</div>
+                </div>
+            </div>
+
+            <div style="margin-top:1.5rem;">
+                <h4 style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+                    Class Probabilities
+                </h4>
+                <div id="probabilityBars"></div>
+            </div>
+        </div>
+
+        <!-- ═══ XAI Explanation Gallery ═══ -->
+        <div style="margin-top:2rem;">
+            <h3 class="section-title" style="font-size:1.2rem;">
+                🧠 Explainable AI Analysis
+            </h3>
+            <p class="section-subtitle" style="font-size:0.85rem;">
+                Heatmaps show which regions influenced the prediction.
+                Click 🔄 to toggle heatmap/overlay. Click image to expand.
+            </p>
+            <div id="explainerGrid" class="explainer-grid"></div>
+        </div>
+
+        <!-- ═══ Download Report ═══ -->
+        <div class="btn-group" style="justify-content:center; margin-top:1.5rem;">
+            <button id="reportBtn" class="btn btn-success">
+                📄 Download PDF Report
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="/{{ project.id }}/static/script.js"></script>
+{% endblock %}

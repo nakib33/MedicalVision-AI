@@ -1,0 +1,7 @@
+/* Alzheimer MRI Classification - Project-Specific Styles */
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+    border-color: #805ad5;
+    background: rgba(128, 90, 213, 0.05);
+}
