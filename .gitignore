@@ -18,3 +18,10 @@ build/
 *.tflite
 *.onnx
 projects/*/data/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
